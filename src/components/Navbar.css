@@ -7,12 +7,12 @@
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 0.5rem;
+  padding: 1.5rem;
   z-index: 1000;
 }
 
 .logo {
-  background-color: #4379f2;
+  /* background-color: #4379f2; */
   border-radius: 14px;
   color: white;
   height: 60px;
@@ -20,7 +20,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-left: 1.5rem;
 }
 
 .options {
@@ -47,6 +49,7 @@
 
 .option:hover {
     background-color: #4379f2;
+    border-radius: 10px;
   box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
 }
 
@@ -61,7 +64,7 @@
 .bar {
   width: 25px;
   height: 3px;
-  background-color: black;
+  background-color: white;
   margin: 3px 0;
 }
 
@@ -93,8 +96,10 @@
   }
 
   .option:hover {
-    background-color: white;
+    /* background-color: white; */
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+
   }
 
   .hamburger {
