@@ -10,7 +10,7 @@ export default function Login() {
   useEffect(() => {
     setIsRegistering(true);
   }, []);
-  
+
   return (
     <div>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -27,6 +27,15 @@ export default function Login() {
               className="space-y-4 md:space-y-6 flex flex-col justify-center align-middle"
               action="#"
             >
+              <div>
+                <TextField required
+                  className="w-full"
+                  id="filled-basic"
+                  label="Username"
+                  variant="filled"
+                />
+              </div>
+
               <div>
                 <TextField required
                   className="w-full"
