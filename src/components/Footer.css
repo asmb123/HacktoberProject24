@@ -1,0 +1,36 @@
+
+.footer {
+    /* background-color: #282c34; */
+    color: black;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 4rem;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer-social {
+    display: flex;
+    gap: 1.5rem; 
+  }
+  
+  .footer-icon {
+    color: black;
+    font-size: 2rem; 
+    transition: color 0.3s;
+  }
+  
+  .footer-icon:hover {
+    color:#4379f2;
+  }
+  
+  .footer-bottom {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+  }
+  
