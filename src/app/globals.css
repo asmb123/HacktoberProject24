@@ -5,21 +5,19 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: black
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background:  #ededed;
   }
 }
 
 body {
-  color: var(--background);
+  color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  padding: 1rem;
 }
 
 @layer utilities {
