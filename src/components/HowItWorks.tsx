@@ -1,4 +1,3 @@
-import "./HowItWorks.css";
 
 const HowItWorks = () => {
   return (

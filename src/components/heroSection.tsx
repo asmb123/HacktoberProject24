@@ -1,12 +1,11 @@
-import "./HeroSection.css";
 import Button from "@mui/material/Button";
 import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <div className="hero  flex p-[3rem] mt-[11vh] h-[75vh] flex-wrap ">
-      <div className="hero-text flex-1 bg-white p-[1rem] rounded-[14px_0_0_14px] shadow-[0px_5px_15px_rgba(0,0,0,0.35)] w-[40%] ">
-        <div className="text text-[1.5rem] mb-[1.5rem] mt-[2rem] font-medium ">
+    <div className="hero flex lg:h-[55vh] lg:mt-[10vh] lg:flex-row lg:items-start flex-col items-centermt-[10vh]flex p-[3rem] mt-[11vh] h-[75vh] flex-wrap ">
+      <div className="hero-text h-auto rounded-[14px] shadow-[0px_4px_12px_rgba(0,0,0,0.25)] lg:shadow-none lg:rounded-none flex-1 bg-white p-[1rem] w-[40%] ">
+        <div className="text text-[1.5rem] mb-[1.5rem] mt-[2rem] font-medium">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
           recusandae, necessitatibus adipisci vitae quam placeat. Ducimus
           dolorum mollitia rerum voluptas iusto itaque similique, nam
