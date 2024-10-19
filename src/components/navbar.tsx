@@ -13,7 +13,7 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const {isLoggedIn} = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <div className='navbar flex justify-between items-center bg-[rgb(36,36,36)]  h-[10vh] fixed top-0 w-[100%] p-[1.5rem] z-[999]  '>
@@ -24,7 +24,7 @@ const Header = () => {
         <div className="option  hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">Start</div>
         <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">Stories</div>
         <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">Contact Us</div>
-        <div className="option"><Link href={isLoggedIn ? '/profile' : '/login'}><CgProfile size={35} /></Link></div>
+        <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer"><Link href={isLoggedIn ? '/profile' : '/login'}><CgProfile size={35} /></Link></div>
 
       </div>
       <div className="hamburger hidden  flex-col justify-between cursor-pointer" onClick={toggleMenu}>
