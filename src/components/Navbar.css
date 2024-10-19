@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,10 +9,10 @@
   width: 100%;
   padding: 1.5rem;
   z-index: 1000;
-}
+} */
 
-.logo {
-  /* background-color: #4379f2; */
+/* .logo {
+  background-color: #4379f2;
   border-radius: 14px;
   color: white;
   height: 60px;
@@ -23,16 +23,16 @@
   font-size: 1.5rem;
   font-weight: 800;
   margin-left: 1.5rem;
-}
+} */
 
-.options {
+/* .options {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-}
+} */
 
-.option {
+/* .option {
   font-size: 1rem;
   height: 40px;
   display: flex;
@@ -43,30 +43,30 @@
   font-weight: 600;
   color: white;
   cursor: pointer;
-  /* background-color: rgb(239, 237, 234); */
-  /* border-radius: 10px; */
-}
+  background-color: rgb(239, 237, 234);
+  border-radius: 10px;
+} */
 
-.option:hover {
+/* .option:hover {
     background-color: #4379f2;
     border-radius: 10px;
   box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
-}
+} */
 
 /* Hamburger Menu */
-.hamburger {
+/* .hamburger {
   display: none;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-}
+} */
 
-.bar {
+/* .bar {
   width: 25px;
   height: 3px;
   background-color: white;
   margin: 3px 0;
-}
+} */
 
 /* Responsive styles */
 @media screen and (max-width: 768px) {
