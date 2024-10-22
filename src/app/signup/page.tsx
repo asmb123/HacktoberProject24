@@ -1,11 +1,11 @@
 "use client"
 import { lazy, Suspense } from "react";
-const Login = lazy(() => import('@/components/Login'));
+const Signup = lazy(() => import('@/components/Signup'));
 
 const page = () => {
     return (
         <Suspense fallback={<div>...Loading</div>}>
-            <Login />
+            <Signup />
         </Suspense>
 
     )

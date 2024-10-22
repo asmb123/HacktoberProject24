@@ -3,7 +3,7 @@ import { account } from "@/appwrite/config";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { OAuthProvider, Models } from "appwrite";
+import { ID, OAuthProvider, Models } from "appwrite";
 import { toast, Toaster } from "react-hot-toast";
 import useAuth from "@/contexts/useAuth";
 import Link from "next/link";
@@ -13,23 +13,12 @@ interface AppwriteError extends Error {
     code?: number;
 }
 
-export default function Login() {
+export default function Signup() {
 
-    // useEffect(() => {
-    //     const storedSession = localStorage.getItem('appwriteSession');
-
-    //     if (storedSession) {
-    //         const session = JSON.parse(storedSession);
-    //         setUser(session.user);
-    //         setIsLoggedIn(true);
-    //     }
-    // }, []);
-
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const { setIsLoggedIn, setUser } = useAuth();
-
+    const { setUser, setIsLoggedIn } = useAuth();
     const router = useRouter();
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
@@ -39,6 +28,7 @@ export default function Login() {
         const loadingToast = toast.loading("Loading...");
 
         try {
+            await account.create(ID.unique(), email, password, username)
             await account.createEmailPasswordSession(email, password);
 
             // Fetch the user data and set it in context
@@ -50,7 +40,6 @@ export default function Login() {
             const session = await account.getSession('current');
             localStorage.setItem('appwriteSession', JSON.stringify(session)); // Store session in localStorage
 
-            setIsLoggedIn(true);
             router.push('/profile');
         } catch (error) {
             const appwriteError = error as AppwriteError; // Type assertion
@@ -58,14 +47,8 @@ export default function Login() {
 
             if (appwriteError.code) {
                 switch (appwriteError.code) {
-                    case 401: // Invalid password or user not found
-                        toast.error("Invalid email or password.");
-                        break;
-                    case 404: // User not found
-                        toast.error("User not found.");
-                        break;
-                    case 400: // bad request
-                        toast.error("Bad request");
+                    case 400: //bad request
+                        toast.error("Bad request, try later");
                         break;
                     default:
                         toast.error("An unexpected error occurred.");
@@ -95,12 +78,23 @@ export default function Login() {
                 <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-slate-300">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl ">
-                            Log in to your account
+                            Sign up
                         </h1>
                         <form
                             className="space-y-4 md:space-y-6 flex flex-col justify-center align-middle"
                             onSubmit={handleSubmit}
                         >
+
+                            <div>
+                                <TextField required
+                                    className="w-full"
+                                    id="filled-basic"
+                                    label="Username"
+                                    variant="filled"
+                                    value={username}
+                                    onChange={(e) => { setUsername(e.target.value) }}
+                                />
+                            </div>
 
                             <div>
                                 <TextField required
@@ -133,7 +127,7 @@ export default function Login() {
                                 className=" font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-white bg-slate-700 "
 
                             >
-                                Login
+                                Create account
                             </Button>
                         </form>
                         <h1 className="font-semibold text-center">or</h1>
@@ -145,7 +139,7 @@ export default function Login() {
                             </button>
                         </div>
                         <p className="text-sm font-light text-center text-black">
-                            <Link className="hover:underline" href={'/signup'}>Don&apos;t have an account yet?</Link>
+                            <Link className="hover:underline" href={'/login'}>Already have an account</Link>
                         </p>
                     </div>
                 </div>
