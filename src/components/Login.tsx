@@ -8,22 +8,8 @@ import { toast, Toaster } from "react-hot-toast";
 import useAuth from "@/contexts/useAuth";
 import Link from "next/link";
 
-// Custom error type for Appwrite errors
-interface AppwriteError extends Error {
-    code?: number;
-}
 
 export default function Login() {
-
-    // useEffect(() => {
-    //     const storedSession = localStorage.getItem('appwriteSession');
-
-    //     if (storedSession) {
-    //         const session = JSON.parse(storedSession);
-    //         setUser(session.user);
-    //         setIsLoggedIn(true);
-    //     }
-    // }, []);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -36,7 +22,6 @@ export default function Login() {
         e.preventDefault();
 
         // Show loading toast
-        const loadingToast = toast.loading("Loading...");
 
         try {
             await account.createEmailPasswordSession(email, password);
@@ -45,37 +30,12 @@ export default function Login() {
             const user: Models.User<Models.Preferences> = await account.get();
             setUser(user);
             setIsLoggedIn(true);
-
-            // Optionally store the session token in localStorage for persistence
-            const session = await account.getSession('current');
-            localStorage.setItem('appwriteSession', JSON.stringify(session)); // Store session in localStorage
-
-            setIsLoggedIn(true);
             router.push('/profile');
+            toast("success");
         } catch (error) {
-            const appwriteError = error as AppwriteError; // Type assertion
-            toast.dismiss(loadingToast);
-
-            if (appwriteError.code) {
-                switch (appwriteError.code) {
-                    case 401: // Invalid password or user not found
-                        toast.error("Invalid email or password.");
-                        break;
-                    case 404: // User not found
-                        toast.error("User not found.");
-                        break;
-                    case 400: // bad request
-                        toast.error("Bad request");
-                        break;
-                    default:
-                        toast.error("An unexpected error occurred.");
-                }
-            } else {
-                toast.error("An unexpected error occurred.");
-            }
+            console.log(error);
         }
     };
-
     const handleGoogle = () => {
         account.createOAuth2Session(
             OAuthProvider.Google, // provider

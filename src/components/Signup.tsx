@@ -8,11 +8,6 @@ import { toast, Toaster } from "react-hot-toast";
 import useAuth from "@/contexts/useAuth";
 import Link from "next/link";
 
-// Custom error type for Appwrite errors
-interface AppwriteError extends Error {
-    code?: number;
-}
-
 export default function Signup() {
 
     const [username, setUsername] = useState("");
@@ -22,11 +17,8 @@ export default function Signup() {
     const router = useRouter();
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
+
         e.preventDefault();
-
-        // Show loading toast
-        const loadingToast = toast.loading("Loading...");
-
         try {
             await account.create(ID.unique(), email, password, username)
             await account.createEmailPasswordSession(email, password);
@@ -35,27 +27,10 @@ export default function Signup() {
             const user: Models.User<Models.Preferences> = await account.get();
             setUser(user);
             setIsLoggedIn(true);
-
-            // Optionally store the session token in localStorage for persistence
-            const session = await account.getSession('current');
-            localStorage.setItem('appwriteSession', JSON.stringify(session)); // Store session in localStorage
-
             router.push('/profile');
+            toast("success");
         } catch (error) {
-            const appwriteError = error as AppwriteError; // Type assertion
-            toast.dismiss(loadingToast);
-
-            if (appwriteError.code) {
-                switch (appwriteError.code) {
-                    case 400: //bad request
-                        toast.error("Bad request, try later");
-                        break;
-                    default:
-                        toast.error("An unexpected error occurred.");
-                }
-            } else {
-                toast.error("An unexpected error occurred.");
-            }
+            console.log(error)
         }
     };
 
