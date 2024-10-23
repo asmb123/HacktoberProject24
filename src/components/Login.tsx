@@ -1,11 +1,11 @@
-"use client"
 import { account } from "@/appwrite/config";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { OAuthProvider, Models } from "appwrite";
 import { toast, Toaster } from "react-hot-toast";
-import useAuth from "@/contexts/useAuth";
+// import useAuth from "@/contexts/useAuth";
+import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
 
 
@@ -21,7 +21,6 @@ export default function Login() {
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
-        // Show loading toast
 
         try {
             await account.createEmailPasswordSession(email, password);
@@ -29,6 +28,7 @@ export default function Login() {
             // Fetch the user data and set it in context
             const user: Models.User<Models.Preferences> = await account.get();
             setUser(user);
+            console.log(user);
             setIsLoggedIn(true);
             router.push('/profile');
             toast("success");

@@ -1,11 +1,11 @@
-"use client"
 import { account } from "@/appwrite/config";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ID, OAuthProvider, Models } from "appwrite";
 import { toast, Toaster } from "react-hot-toast";
-import useAuth from "@/contexts/useAuth";
+// import useAuth from "@/contexts/useAuth";
+import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
 
 export default function Signup() {

@@ -1,15 +1,10 @@
-"use client"
-import React from 'react'
+import Profile from "@/components/Profile";
 
 const page = () => {
 
     return (
-        <div className='w-screen h-screen flex flex-col justify-center items-center'>
-            <button>
-                Logout
-            </button>
-        </div>
-    )
+        <Profile />
+    );
 }
 
-export default page
+export default page;
