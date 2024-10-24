@@ -4,6 +4,7 @@ import Link from 'next/link';
 import './Navbar.css';
 import { useState } from 'react';
 import { CgProfile } from "react-icons/cg";
+import Profile1 from './Profile1';
 
 const Header = () => {
 
@@ -21,7 +22,7 @@ const Header = () => {
         <div className="option  hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">Start</div>
         <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">Stories</div>
         <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">Contact Us</div>
-        <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer"><Link href={'/profile'}><CgProfile size={35} /></Link></div>
+        <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer"><Link href={'/profile'}><Profile1/></Link></div>
 
       </div>
       <div className="hamburger hidden  flex-col justify-between cursor-pointer" onClick={toggleMenu}>
