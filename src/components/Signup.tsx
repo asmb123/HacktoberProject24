@@ -1,6 +1,6 @@
 import { account } from "@/appwrite/config";
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ID, OAuthProvider, Models } from "appwrite";
 import { toast, Toaster } from "react-hot-toast";
@@ -13,11 +13,10 @@ export default function Signup() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { setUser, setIsLoggedIn } = useAuth();
+    const { setUser, setIsLoggedIn, isLoggedIn } = useAuth();
     const router = useRouter();
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
-
         e.preventDefault();
         try {
             await account.create(ID.unique(), email, password, username)
@@ -41,6 +40,12 @@ export default function Signup() {
             'http://localhost:3000/login', // redirect here on failure
         );
     }
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            router.push('/profile');
+        }
+    })
 
     return (
         <div>

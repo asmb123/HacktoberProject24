@@ -1,3 +1,4 @@
+"use client"
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { account } from "../appwrite/config";
 import { Models } from "appwrite";
@@ -35,16 +36,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         // Fetch the current logged-in user from Appwrite on initial load
         const fetchUser = async () => {
             try {
-                const user = await account.get(); // Fetch user data
+                const user = await account.get(); // Fetching user data
                 setUser(user);                    // Set the user data
                 setIsLoggedIn(true);              // Set the logged-in state
+                return user;
             } catch (error) {
                 console.error("Failed to fetch user:", error);
                 setUser(null);
                 setIsLoggedIn(false);
             }
         };
-
         fetchUser();
     }, []);
 
