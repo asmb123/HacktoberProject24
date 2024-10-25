@@ -51,9 +51,9 @@ export default function Login() {
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a
                     href="#"
-                    className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+                    className="flex items-center mb-6 text-2xl font-semibold text-black dark:text-white"
                 ></a>
-                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-slate-300">
+                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-lightredbg">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl ">
                             Log in to your account
@@ -91,8 +91,7 @@ export default function Login() {
 
                             <Button
                                 type="submit"
-                                className=" font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-white bg-slate-700 "
-
+                                className=" font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-white bg-redbg"
                             >
                                 Login
                             </Button>

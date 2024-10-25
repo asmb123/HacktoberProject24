@@ -24,10 +24,10 @@ export default function Signup() {
 
             // Fetch the user data and set it in context
             const user: Models.User<Models.Preferences> = await account.get();
+            toast("success");
             setUser(user);
             setIsLoggedIn(true);
             router.push('/profile');
-            toast("success");
         } catch (error) {
             console.log(error)
         }
@@ -55,7 +55,7 @@ export default function Signup() {
                     href="#"
                     className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
                 ></a>
-                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-slate-300">
+                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-lightredbg">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl ">
                             Sign up
@@ -104,7 +104,7 @@ export default function Signup() {
 
                             <Button
                                 type="submit"
-                                className=" font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-white bg-slate-700 "
+                                className=" font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-white bg-redbg"
 
                             >
                                 Create account

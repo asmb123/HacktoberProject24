@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Hacktober Project",
+  title: "ScholarLift",
   description: "Hacktober Project",
 };
 

@@ -4,16 +4,19 @@ import { useAuth } from "@/contexts/AuthContext";
 import { account } from "../appwrite/config";
 import { useRouter } from "next/navigation";
 import Loading from "./Loading";
+import { Container, Box, Typography, Button } from "@mui/material";
 
 const Profile = () => {
     const router = useRouter();
-    const { user, setUser } = useAuth();
-    const [loading, setLoading] = useState(true); // State to manage loading status
+    const { user, setUser, setIsLoggedIn } = useAuth();
+    const [loading, setLoading] = useState(true);
 
     const deleteSession = async () => {
         try {
             await account.deleteSession('current');
-            router.push('/login'); // Redirect after logging out
+            setIsLoggedIn(false);
+            setUser(null);
+            router.push('/login');
         } catch (error) {
             console.error('Failed to delete session:', error);
         }
@@ -21,54 +24,109 @@ const Profile = () => {
 
     useEffect(() => {
         const checkSession = async () => {
+            setLoading(true);
             try {
                 const session = await account.getSession('current');
-                if (!session) {
-                    router.push('/login');
-                } else {
-                    // Fetch user details only if the session is valid
+                if (session) {
                     const userDetails = await account.get();
-                    setUser(userDetails); // Update the user in context
-                    console.log("user:", user);
+                    setUser(userDetails);
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
+                    router.push('/login');
                 }
             } catch (error) {
                 console.error('No active session:', error);
-                router.push('/login'); // Redirect to login if no session
+                setIsLoggedIn(false);
+                router.push('/login');
             } finally {
-                setLoading(false); // Set loading to false after fetching
+                setLoading(false);
             }
         };
 
-        checkSession();
-    }, [router, setUser, user]);
+        if (!user) {
+            checkSession();
+        } else {
+            setLoading(false); // User is already logged in
+        }
+    }, [user, router, setIsLoggedIn, setUser]);
 
-    // Loading state handling
     if (loading) {
-        return <Loading/>
+        return <Loading />;
     }
 
     return (
-        <div className="text-center text-xl bg-white text-black">
-            <div className="w-screen h-screen flex flex-col justify-center items-center">
+        <Container maxWidth="sm" sx={{ mt: 5, px: 3 }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    p: 4,
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    textAlign: "center",
+                    bgcolor: "background.paper",
+                    backgroundColor: '#f8d7da',
+                }}
+                className="bg-lightredbg"
+            >
                 {user?.email ? (
                     <>
-                        <p>Name: {user.name || 'No name available'}</p>
-                        <p>Email: {user.email || 'No email available'}</p>
-                        <button
+                        <Typography
+                            variant="h4"
+                            component="h1"
+                            gutterBottom
+                            sx={{
+                                bgcolor: '#c71550',
+                                color: "#ffffff",
+                                p: 2,
+                                borderRadius: 3,
+                                mb: 3,
+                                mt: 2,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Welcome, {user.name || 'User'}
+                        </Typography>
+                        <Typography
+                            variant="h6"
+                            color="textPrimary"
+                            sx={{ mb: 1.5, fontSize: "1.5rem", fontWeight: 500 }}
+                        >
+                            Username: {user.name || 'No username available'}
+                        </Typography>
+                        <Typography
+                            variant="h6"
+                            color="textPrimary"
+                            sx={{ mb: 3, fontSize: "1.5rem", fontWeight: 500 }}
+                        >
+                            Email: {user.email || 'No email available'}
+                        </Typography>
+                        <Button
+                            variant="contained"
+                            color="secondary"
                             onClick={deleteSession}
-                            className="ml-4 px-4 py-2 bg-blue-500 text-black rounded"
+                            sx={{
+                                mt: 2,
+                                px: 5,
+                                py: 1,
+                                fontSize: "1rem",
+                                fontWeight: "bold",
+                                backgroundColor: "#9C3353",
+                                "&:hover": { backgroundColor: "#c71550" },
+                            }}
                         >
                             Logout
-                        </button>
+                        </Button>
                     </>
                 ) : (
-                    <>
-                        <p className="w-screen h-screen flex justify-center items-center">You are not logged in </p>
-                    </>
-
+                    <Typography variant="h6" color="error" sx={{ mt: 5 }}>
+                        You are not logged in
+                    </Typography>
                 )}
-            </div>
-        </div>
+            </Box>
+        </Container>
     );
 };
 
