@@ -18,7 +18,7 @@ const Header = () => {
       <div className={`options flex justify-between items-center gap-[1rem] ${isMenuOpen ? 'open' : ''}`}>
         <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer "><Link href={'/pages/aboutus'}>About Us</Link></div>
         <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer"><Link href={'/pages/start'}>Start</Link></div>
-        <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer"><Link href={'/pages/stories'}>Stories</Link></div>
+        <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer"><Link href={'/pages/ourstories'}>Stories</Link></div>
         <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer"><Link href={'/pages/contactus'}>Contact Us</Link></div>
         <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer"><Link href={'/pages/profile'}><CgProfile size={35} /></Link></div>
 
