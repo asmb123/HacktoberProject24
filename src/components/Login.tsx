@@ -26,7 +26,7 @@ export default function Login() {
             console.log(user);
             setIsLoggedIn(true);
             toast("success");
-            router.push('/profile');
+            router.push('/pages/profile');
         } catch (error) {
             console.log(error);
         }
@@ -34,14 +34,14 @@ export default function Login() {
     const handleGoogle = () => {
         account.createOAuth2Session(
             OAuthProvider.Google, // provider
-            'http://localhost:3000/profile', // redirect here on success
-            'http://localhost:3000/login', // redirect here on failure
+            'http://localhost:3000/pages/profile', // redirect here on success
+            'http://localhost:3000/pages/login', // redirect here on failure
         );
     }
 
     useEffect(() => {
         if (isLoggedIn) {
-            router.push('/profile');
+            router.push('/pages/profile');
         }
     })
 
@@ -105,7 +105,7 @@ export default function Login() {
                             </button>
                         </div>
                         <p className="text-sm font-light text-center text-black">
-                            <Link className="hover:underline" href={'/signup'}>Don&apos;t have an account yet?</Link>
+                            <Link className="hover:underline" href={'/pages/signup'}>Don&apos;t have an account yet?</Link>
                         </p>
                     </div>
                 </div>

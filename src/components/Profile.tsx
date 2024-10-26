@@ -16,7 +16,7 @@ const Profile = () => {
             await account.deleteSession('current');
             setIsLoggedIn(false);
             setUser(null);
-            router.push('/login');
+            router.push('/pages/login');
         } catch (error) {
             console.error('Failed to delete session:', error);
         }
@@ -33,12 +33,12 @@ const Profile = () => {
                     setIsLoggedIn(true);
                 } else {
                     setIsLoggedIn(false);
-                    router.push('/login');
+                    router.push('/pages/login');
                 }
             } catch (error) {
                 console.error('No active session:', error);
                 setIsLoggedIn(false);
-                router.push('/login');
+                router.push('/pages/login');
             } finally {
                 setLoading(false);
             }
