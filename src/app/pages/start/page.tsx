@@ -1,14 +1,9 @@
-import Header from "@/components/navbar"
-import Start from "@/components/Start"
+import Start from "@/components/Start";
 
 const page = () => {
   return (
-    <>
-      <Header />
-      <Start />
-    </>
-
+    <Start />
   )
 }
 
-export default page
+export default page;
