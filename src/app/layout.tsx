@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <div className="w-screen h-screen flex flex-col gap-4">
+          <div className="w-screen h-screen flex flex-col gap-4 bg-[radial-gradient(#ff6ab5_1px,transparent_1px)] [background-size:16px_16px]">
             <Header />
             {children}
           </div>
