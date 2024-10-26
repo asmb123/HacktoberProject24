@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthContext";
+import Header from "@/components/navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Hacktober Project",
+  title: "ScholarLift",
   description: "Hacktober Project",
 };
 
@@ -28,7 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AuthProvider>
+          <div className="w-screen h-screen flex flex-col gap-4">
+            <Header />
+            {children}
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

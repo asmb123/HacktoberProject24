@@ -1,88 +1,49 @@
-"use client"
 import { account } from "@/appwrite/config";
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { OAuthProvider, Models } from "appwrite";
 import { toast, Toaster } from "react-hot-toast";
-import useAuth from "@/contexts/useAuth";
+// import useAuth from "@/contexts/useAuth";
+import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
 
-// Custom error type for Appwrite errors
-interface AppwriteError extends Error {
-    code?: number;
-}
 
 export default function Login() {
 
-    // useEffect(() => {
-    //     const storedSession = localStorage.getItem('appwriteSession');
-
-    //     if (storedSession) {
-    //         const session = JSON.parse(storedSession);
-    //         setUser(session.user);
-    //         setIsLoggedIn(true);
-    //     }
-    // }, []);
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const { setIsLoggedIn, setUser } = useAuth();
-
+    const { setIsLoggedIn, setUser, isLoggedIn } = useAuth();
     const router = useRouter();
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-
-        // Show loading toast
-        const loadingToast = toast.loading("Loading...");
-
         try {
             await account.createEmailPasswordSession(email, password);
-
             // Fetch the user data and set it in context
             const user: Models.User<Models.Preferences> = await account.get();
             setUser(user);
+            console.log(user);
             setIsLoggedIn(true);
-
-            // Optionally store the session token in localStorage for persistence
-            const session = await account.getSession('current');
-            localStorage.setItem('appwriteSession', JSON.stringify(session)); // Store session in localStorage
-
-            setIsLoggedIn(true);
-            router.push('/profile');
+            toast("success");
+            router.push('/pages/profile');
         } catch (error) {
-            const appwriteError = error as AppwriteError; // Type assertion
-            toast.dismiss(loadingToast);
-
-            if (appwriteError.code) {
-                switch (appwriteError.code) {
-                    case 401: // Invalid password or user not found
-                        toast.error("Invalid email or password.");
-                        break;
-                    case 404: // User not found
-                        toast.error("User not found.");
-                        break;
-                    case 400: // bad request
-                        toast.error("Bad request");
-                        break;
-                    default:
-                        toast.error("An unexpected error occurred.");
-                }
-            } else {
-                toast.error("An unexpected error occurred.");
-            }
+            console.log(error);
         }
     };
-
     const handleGoogle = () => {
         account.createOAuth2Session(
             OAuthProvider.Google, // provider
-            'http://localhost:3000/profile', // redirect here on success
-            'http://localhost:3000/login', // redirect here on failure
+            'http://localhost:3000/pages/profile', // redirect here on success
+            'http://localhost:3000/pages/login', // redirect here on failure
         );
     }
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            router.push('/pages/profile');
+        }
+    })
 
     return (
         <div>
@@ -90,9 +51,9 @@ export default function Login() {
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a
                     href="#"
-                    className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+                    className="flex items-center mb-6 text-2xl font-semibold text-black dark:text-white"
                 ></a>
-                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-slate-300">
+                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-lightredbg">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl ">
                             Log in to your account
@@ -130,8 +91,7 @@ export default function Login() {
 
                             <Button
                                 type="submit"
-                                className=" font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-white bg-slate-700 "
-
+                                className=" font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-white bg-redbg"
                             >
                                 Login
                             </Button>
@@ -145,7 +105,7 @@ export default function Login() {
                             </button>
                         </div>
                         <p className="text-sm font-light text-center text-black">
-                            <Link className="hover:underline" href={'/signup'}>Don&apos;t have an account yet?</Link>
+                            <Link className="hover:underline" href={'/pages/signup'}>Don&apos;t have an account yet?</Link>
                         </p>
                     </div>
                 </div>

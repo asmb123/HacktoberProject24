@@ -13,15 +13,14 @@ const Header = () => {
   };
 
   return (
-    <div className='navbar flex justify-between items-center bg-[rgb(36,36,36)]  h-[10vh] fixed top-0 w-[100%] p-[1.5rem] z-[999]  '>
-      <div className="logo rounded-[14px] text-white h-[60px] w-[120px]  flex justify-center text-[1.5rem] font-extrabold ml-[1.5rem] ">ScholarLift</div>
+    <div className='navbar flex justify-between items-center bg-redbg h-[10vh] fixed top-0 w-[100%] p-[1.5rem] z-[999]  '>
+      <div className="logo rounded-[14px] text-white h-[40px] w-[120px] flex justify-center text-[1.5rem] font-extrabold ml-[1.5rem]"><Link href={'/'}>ScholarLift</Link></div>
       <div className={`options flex justify-between items-center gap-[1rem] ${isMenuOpen ? 'open' : ''}`}>
-        <div className="option text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer ">About Us</div>
-        <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">List</div>
-        <div className="option  hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">Start</div>
-        <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">Stories</div>
-        <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer">Contact Us</div>
-        <div className="option hover:bg-[#4379f2] hover:rounded-[10px] hover:shadow-[rgba(255, 255, 255, 0.35)_0px_5px_15px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white cursor-pointer"><Link href={'/profile'}><CgProfile size={35} /></Link></div>
+        <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer "><Link href={'/pages/aboutus'}>About Us</Link></div>
+        <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer"><Link href={'/pages/start'}>Start</Link></div>
+        <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer"><Link href={'/pages/stories'}>Stories</Link></div>
+        <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer"><Link href={'/pages/contactus'}>Contact Us</Link></div>
+        <div className="option hover:bg-lightredbg hover:rounded-[10px] text-[1rem] h-[40px] flex justify-center items-center min-w-[60px] p-[5px] font-bold text-white hover:text-black cursor-pointer"><Link href={'/pages/profile'}><CgProfile size={35} /></Link></div>
 
       </div>
       <div className="hamburger hidden  flex-col justify-between cursor-pointer" onClick={toggleMenu}>
