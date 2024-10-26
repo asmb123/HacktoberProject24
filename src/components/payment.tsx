@@ -10,26 +10,28 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export default function Payment() {
- const amount=3334;
+  const amount = 3334;
+
   return (
-    <main className="max-w-6xl mx-auto p-10 text-white text-center border m-10 rounded-md bg-gradient-to-tr from-blue-500 to-purple-500">
-      <div className="mb-10">
-        <h1 className="text-4xl font-extrabold mb-2">Sonny</h1>
-        <h2 className="text-2xl">
-          has requested
-          <span className="font-bold"> ${amount}</span>
-        </h2>
+    <main className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-6">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 transform transition duration-500 hover:scale-105">
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-bold text-gray-800 mb-1">Sonny</h1>
+          <p className="text-lg text-gray-600">
+            has requested <span className="font-extrabold text-indigo-600">${amount}</span>
+          </p>
+        </div>
+        <Elements
+          stripe={stripePromise}
+          options={{
+            mode: "payment",
+            amount: convertToSubcurrency(amount),
+            currency: "usd",
+          }}
+        >
+          <CheckoutPage amount={amount} />
+        </Elements>
       </div>
-      <Elements
-        stripe={stripePromise}
-        options={{
-          mode: "payment",
-          amount: convertToSubcurrency(amount),
-          currency: "usd",
-        }}
-      >
-        <CheckoutPage amount={amount} />
-      </Elements>
     </main>
   );
 }
