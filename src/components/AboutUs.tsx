@@ -1,9 +1,9 @@
 "use client";
-import { Container, Box, Typography, Button } from "@mui/material";
+
 
 const AboutUs = () => {
   return (
-    <div className="flex justify-center items-center h-[100%] w-auto mx-5 pt-10 p-4">
+    <div className="flex justify-center items-center h-[100vh] w-auto mx-5 pt-10 p-4">
       <div className="flex w-[90%] h-[70%]  border-[1px] border-black rounded-lg overflow-auto">
         <div className="relative w-full  p-6 ">
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1.5px]">
