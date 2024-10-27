@@ -1,17 +1,17 @@
 "use client";
-import { useAuth } from "@/contexts/AuthContext";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { TextField, Button, Typography, Box } from '@mui/material';
 import { Databases, ID, Storage } from "appwrite";
-import { client } from "@/appwrite/config";
+import { account, client } from "@/appwrite/config";
+import Loading from "./Loading";
 
 const Start = () => {
-  const { user } = useAuth();
   const router = useRouter();
   const storage = new Storage(client);
   const databases = new Databases(client);
 
+  const [loading, setLoading] = useState<boolean>();
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -77,12 +77,24 @@ const Start = () => {
 
   useEffect(() => {
     const checkSession = async () => {
-      if (!user) {
+      setLoading(true);
+      try {
+        await account.getSession('current'); // Check if a session exists
+        setLoading(false); // Stop loading if session exists
+      } catch (error) {
+        // Redirect if no session exists or an error occurs
         router.push('/pages/login');
+        console.log(error);
       }
     };
+
     checkSession();
-  }, [router, user]);
+  }, [router]); // Adding router as a dependency is also good practice
+
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Box
