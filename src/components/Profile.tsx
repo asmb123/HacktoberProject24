@@ -22,7 +22,7 @@ const Profile = () => {
         }
     };
 
-    useEffect(() => {
+        useEffect(() => {
         const checkSession = async () => {
             setLoading(true);
             try {

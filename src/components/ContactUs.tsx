@@ -31,7 +31,7 @@ const ContactUs = () => {
                     boxShadow: 3,
                     textAlign: "center",
                     bgcolor: "background.paper",
-                    backgroundColor: "#f1f8e9", // Light green background styling
+                    backgroundColor: "#FBB6CC   ", // Light green background styling
                 }}
             >
                 <Typography
@@ -39,8 +39,8 @@ const ContactUs = () => {
                     component="h1"
                     gutterBottom
                     sx={{
-                        bgcolor: "#c5e1a5",
-                        color: "#33691e",
+                        bgcolor: "#F18EAD",
+                        color: "#9C3353",
                         p: 2,
                         borderRadius: 1,
                         mb: 3,
@@ -105,7 +105,7 @@ const ContactUs = () => {
                             py: 1,
                             fontSize: "1rem",
                             fontWeight: "bold",
-                            backgroundColor: "#558b2f",
+                            backgroundColor: "#9C3353",
                             "&:hover": { backgroundColor: "#33691e" },
                         }}
                     >

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
 import { client } from "@/appwrite/config";
 import { Databases, Storage } from "appwrite";
+import Loading from "./Loading";
 
 type FundraiserData = {
   $id: string; 
@@ -12,6 +13,7 @@ type FundraiserData = {
   description: string;
   imageId: string | null;
   imageUrl: string | null;
+  goalAmount: number;
 };
 
 export function ThreeDCard() {
@@ -31,16 +33,19 @@ export function ThreeDCard() {
 
         const dataWithImageUrls = await Promise.all(
           response.documents.map(async (doc) => {
-            const document = doc as FundraiserData;
+            const document = doc as unknown as FundraiserData;
             let imageUrl = defaultImageUrl;
 
             if (document.imageId) {
-              const imageResponse = await storage.getFileView(
+              const imageResponse = storage.getFileView(
                 process.env.NEXT_PUBLIC_BUCKET_ID!,
                 document.imageId
               );
-              imageUrl = imageResponse.href;
+              imageUrl = imageResponse;
+              console.log(imageUrl);
             }
+
+            
 
             return {
               ...document,
@@ -61,11 +66,11 @@ export function ThreeDCard() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading/>;
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-1">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-x-0">
       {dataList.map((data) => (
         <CardContainer
           key={data.$id}
@@ -83,7 +88,7 @@ export function ThreeDCard() {
               translateZ="40"
               className="text-black-500 text-xs sm:text-sm max-w-xs mt-1 dark:text-black-300"
             >
-              {data.description}
+              require {data.goalAmount}
             </CardItem>
             <CardItem translateZ="60" className="w-full mt-3">
               <Image
