@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 
 const AboutUs = () => {
   return (
@@ -24,7 +25,9 @@ const AboutUs = () => {
             </p>
             <div className="flex pt-4  justify-evenly items-center">
               <div className="flex flex-col justify-center ">
-                <img className="h-16 p-2" src="/images/rupee.svg" alt="" />
+                <Image className="h-16 p-2" src="/images/rupee.svg" alt="" 
+                width={200}
+                height={200} />
                 <h1 className="text-3xl font-semibold text-redbg text-center">
                   1000
                 </h1>
@@ -32,10 +35,12 @@ const AboutUs = () => {
               </div>
 
               <div className="flex flex-col justify-center items-center ">
-                <img
+                <Image
                   className="relative h-20 pb-2 "
                   src="/images/people.svg"
                   alt=""
+                  width={200}
+                  height={200}
                 />
                 <h1 className="text-3xl text-center font-semibold text-redbg">
                   100
@@ -46,11 +51,13 @@ const AboutUs = () => {
           </div>
         </div>
 
-        <div className="w-0 sm:w-[40%]    ">
-          <img
+        <div className="w-0 sm:w-[40%]">
+          <Image
             src="https://ccrc.tc.columbia.edu/images/manycauses.jpg"
-            className="w-full h-full hidden sm:block  object-cover"
+            className="hidden sm:block h-full object-cover"
             alt="Students"
+            width={400}
+            height={600}
           />
         </div>
       </div>
