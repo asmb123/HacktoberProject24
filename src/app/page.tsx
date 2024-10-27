@@ -8,9 +8,9 @@ export default function Home() {
 
     <div>
       <Header />
-      {/* <HeroSection />
+      <HeroSection />
       <HowItWorks />
-      <Footer /> */}
+      <Footer />
       <Payment />
     </div>
     );
