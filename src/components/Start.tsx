@@ -21,11 +21,11 @@ const Start = () => {
     IFSC: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'file' ? e.target.files[0] : value,
+      [name]: type === 'file' && e.target.files ? e.target.files[0] : value,
     });
   };
 
