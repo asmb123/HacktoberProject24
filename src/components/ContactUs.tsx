@@ -7,7 +7,7 @@ const ContactUs = () => {
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         // Replace with actual email-sending function
         try {
