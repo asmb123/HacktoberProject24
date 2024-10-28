@@ -33,7 +33,9 @@ export default function RootLayout({
         <AuthProvider>
           <div className="w-screen min-h-screen flex flex-col gap-4 bg-[radial-gradient(#ff6ab5_1px,transparent_1px)] [background-size:16px_16px]">
             <Header />
+            <main className="flex-1 p-2 mt-20">
             {children}
+            </main>
           </div>
         </AuthProvider>
       </body>

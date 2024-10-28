@@ -1,10 +1,25 @@
 import Button from "@mui/material/Button";
 import Image from "next/image";
+import FlipWords from "./ui/flip-words"
 
 const HeroSection = () => {
   return (
-    <div className="hero flex lg:h-[55vh] lg:mt-[10vh] lg:flex-row lg:items-start flex-col items-centermt-[10vh]flex p-[3rem] mt-[11vh] h-[75vh] flex-wrap ">
-      <div className="hero-text h-auto rounded-[14px] shadow-[0px_4px_12px_rgba(0,0,0,0.25)] lg:shadow-none lg:rounded-none flex-1 bg-white p-[1rem] w-[40%] ">
+    <div className="pt-4">
+
+    <div className="flex flex-col justify-center  align-middle text-center ">
+    <div className="flex text-center align-middle justify-center">
+       
+        <h1 className="text-3xl font-semibold text-gray-500">WE ARE HERE TO</h1>
+        <FlipWords words={["LIFT","BOOST","ELEVATE"]} duration={1000} className="text-3xl w-24 font-semibold "/>
+       
+        </div>
+        <h1 className="text-3xl font-semibold text-gray-500">SCHOLAR</h1>
+       
+       
+      </div>
+    <div className="hero flex  flex-row items-centermt-[10vh]flex p-[3rem]  h-[75vh] flex-wrap ">
+      
+      <div className="hero-text h-auto rounded-l-[14px]  backdrop-blur-[2px]  lg:shadow-none lg:rounded-none flex-1  p-[1rem] w-[40%] ">
         <div className="text text-[1.5rem] mb-[1.5rem] mt-[2rem] font-medium">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
           recusandae, necessitatibus adipisci vitae quam placeat. Ducimus
@@ -22,16 +37,17 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="hero-image flex-1 relative rounded-[0_14px_14px_0] overflow-hidden bg-white shadow-[1.95px_1.95px_2.6px_rgba(0,0,0,0.15)]  ">
+      <div className="hero-image flex-1 relative rounded-[0_14px_14px_0] overflow-hidden hidden md:block  ">
         <Image
           src="/images/heroImg.jpg"
           alt="Hero Section"
           layout="fill"
           objectFit="cover"
-          className="hero-img w-[100%] h-[100%] p-[3rem]"
+          className="hero-img w-[100%] h-[100%] "
           priority={true}
-        />
+          />
       </div>
+    </div>
     </div>
   );
 };
