@@ -11,9 +11,17 @@ const ContactUs = () => {
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        toast.success('Thank you, We will contact you soon');
         try {
-            // Send email using your backend or Appwrite function here
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+            toast.success('Thank you, We will contact you soon');
+            const data = await response.json();
+            toast.success(data);
             setStatus('Thank you for reaching out! We will contact you soon.');
         } catch (error) {
             setStatus('Failed to send message. Please try again later.');
