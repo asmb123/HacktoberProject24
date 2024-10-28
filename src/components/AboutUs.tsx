@@ -1,10 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const AboutUs = () => {
   return (
-    <div className="flex justify-center items-center h-[100vh] w-auto mx-5 pt-10 p-4">
+    <motion.div
+      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ ease: "easeIn", duration: 0.2 }}
+      className="flex justify-center items-center h-[100vh] w-auto mx-5 pt-10 p-4">
       <div className="flex w-[90%] h-[70%]  border-[1px] border-black rounded-lg overflow-auto">
         <div className="relative w-full  p-6 ">
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1.5px]">
@@ -25,9 +31,9 @@ const AboutUs = () => {
             </p>
             <div className="flex pt-4  justify-evenly items-center">
               <div className="flex flex-col justify-center ">
-                <Image className="h-16 p-2" src="/images/rupee.svg" alt="" 
-                width={200}
-                height={200} />
+                <Image className="h-16 p-2" src="/images/rupee.svg" alt=""
+                  width={200}
+                  height={200} />
                 <h1 className="text-3xl font-semibold text-redbg text-center">
                   1000
                 </h1>
@@ -61,7 +67,7 @@ const AboutUs = () => {
           />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -5,6 +5,7 @@ import { account } from "../appwrite/config";
 import { useRouter } from "next/navigation";
 import Loading from "./Loading";
 import { Container, Box, Typography, Button } from "@mui/material";
+import { motion } from "framer-motion";
 
 const Profile = () => {
     const router = useRouter();
@@ -22,7 +23,7 @@ const Profile = () => {
         }
     };
 
-        useEffect(() => {
+    useEffect(() => {
         const checkSession = async () => {
             setLoading(true);
             try {
@@ -56,7 +57,13 @@ const Profile = () => {
     }
 
     return (
-        <Container maxWidth="sm" sx={{ mt: 5, px: 3 }}>
+        <Container
+            component={motion.div}
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ ease: "easeIn", duration: 0.1 }}
+            maxWidth="sm" sx={{ mt: 5, px: 3 }}>
             <Box
                 sx={{
                     display: "flex",

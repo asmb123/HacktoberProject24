@@ -67,6 +67,7 @@ const Start = () => {
           }
         );
         console.log("Document created successfully");
+        router.push('/pages/stories');
       } catch (error) {
         console.error("Failed to create document:", error);
       }
@@ -100,7 +101,7 @@ const Start = () => {
     <Box
       component="form"
       onSubmit={handleSubmit}
-      sx={{ maxWidth: '100%', p: 4 }}
+      sx={{ maxWidth: '40%', p: 4 }}
       className="bg-white shadow-lg rounded-lg md:max-w-lg mx-auto"
     >
       <Typography variant="h5" gutterBottom className="text-redbg">

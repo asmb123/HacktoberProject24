@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
+import { Toaster, toast } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const ContactUs = () => {
     const [email, setEmail] = useState('');
@@ -9,7 +11,7 @@ const ContactUs = () => {
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        // Replace with actual email-sending function
+        toast.success('Thank you, We will contact you soon');
         try {
             // Send email using your backend or Appwrite function here
             setStatus('Thank you for reaching out! We will contact you soon.');
@@ -20,7 +22,14 @@ const ContactUs = () => {
     };
 
     return (
-        <Container maxWidth="sm" sx={{ mt: 5, px: 3 }}>
+        <Container
+            component={motion.div}
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ ease: "easeIn", duration: 0.1 }}
+            maxWidth="sm" sx={{ mt: 5, px: 3 }}>
+            <Toaster />
             <Box
                 sx={{
                     display: "flex",
@@ -49,7 +58,7 @@ const ContactUs = () => {
                 >
                     Contact Us
                 </Typography>
-                
+
                 {/* Displaying Address and Contact Info */}
                 <Typography
                     variant="h6"

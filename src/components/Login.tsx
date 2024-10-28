@@ -7,6 +7,7 @@ import { toast, Toaster } from "react-hot-toast";
 // import useAuth from "@/contexts/useAuth";
 import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 
 export default function Login() {
@@ -34,8 +35,8 @@ export default function Login() {
     const handleGoogle = () => {
         account.createOAuth2Session(
             OAuthProvider.Google, // provider
-            'http://localhost:3000/pages/profile', // redirect here on success
-            'http://localhost:3000/pages/login', // redirect here on failure
+            `${process.env.NEXT_PUBLIC_FRONTEND}pages/profile`, // redirect here on success
+            `${process.env.NEXT_PUBLIC_FRONTEND}pages/login`, // redirect here on failure
         );
     }
 
@@ -46,7 +47,12 @@ export default function Login() {
     })
 
     return (
-        <div>
+        <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ ease: "easeIn", duration: 0.1 }}
+        >
             <Toaster />
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a
@@ -110,6 +116,6 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
