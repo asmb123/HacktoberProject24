@@ -20,6 +20,7 @@ type FundraiserData = {
 export function ThreeDCard() {
   const [dataList, setDataList] = useState<FundraiserData[]>([]);
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [collectedFund,setcollectedFund]=useState<number>(50);
   const databases = new Databases(client);
   const storage = new Storage(client);
