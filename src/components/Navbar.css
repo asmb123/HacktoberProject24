@@ -77,7 +77,7 @@
     background-color: #9C3353;
     flex-direction: column;
     width: 40%;
-    height: calc(100vh - 10vh);
+    height: 100vh;
     justify-content: flex-start;
     align-items: center;
     transform: translateX(100%);
