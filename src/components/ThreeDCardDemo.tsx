@@ -8,9 +8,10 @@ import { Databases, Storage } from "appwrite";
 import Loading from "./Loading";
 import ProgressBar2 from "./Percentage";
 import { Modal, Box, Typography, Button } from "@mui/material";
+import { motion } from "framer-motion";
 
 type FundraiserData = {
-  $id: string; 
+  $id: string;
   title: string;
   description: string;
   imageId: string | null;
@@ -68,7 +69,7 @@ export function ThreeDCard() {
     };
 
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCardClick = (data: FundraiserData) => {
@@ -129,7 +130,12 @@ export function ThreeDCard() {
       </div>
 
       {/* Modal */}
-      <Modal open={isModalOpen} onClose={handleCloseModal}>
+      <Modal open={isModalOpen} onClose={handleCloseModal} component={motion.div}
+        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 100 }}
+        exit={{ opacity: 0, y: 100 }}
+        transition={{ ease: "easeIn", duration: 0.2 }}
+      >
         <Box
           sx={{
             position: "absolute",
