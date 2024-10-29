@@ -21,7 +21,7 @@ export function ThreeDCard() {
   const [loading, setLoading] = useState(true);
   const databases = new Databases(client);
   const storage = new Storage(client);
-  const defaultImageUrl = "/images/heroImg.jpg";
+  const defaultImageUrl = "/images/noimage.jpg";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,16 +71,18 @@ export function ThreeDCard() {
   }
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-x-0">
+    <>
+    <div className="w-screen text-center text-4xl font-mono font-semibold md:text-5xl">Support a fundaraiser</div>
+    <div className="grid grid-cols-2 sm:grid-cols-2 sm:grid-rows-3 md:grid-cols-4 gap-x-6">
       {dataList.map((data) => (
         <CardContainer
           key={data.$id}
           className="inter-var max-w-[12rem] sm:max-w-[14rem] md:max-w-[16rem] lg:max-w-[18rem]"
         >
-          <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-lightredbg dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-lg p-4 sm:p-5 border">
+          <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-lightredbg dark:border-white/[0.2] border-black/[0.1] min-w-full h-auto rounded-lg p-4 sm:p-5 border">
             <CardItem
               translateZ="30"
-              className="text-lg sm:text-xl font-semibold text-black-600 dark:text-black"
+              className="text-lg sm:text-xl font-semibold text-black-600 dark:text-black line-clamp-1 overflow-hidden text-ellipsis"
             >
               {data.title}
             </CardItem>
@@ -104,5 +106,7 @@ export function ThreeDCard() {
         </CardContainer>
       ))}
     </div>
+    </>
+
   );
 }
