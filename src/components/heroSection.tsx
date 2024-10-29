@@ -18,10 +18,10 @@ const HeroSection = () => {
 
 
       </div>
-      <div className="hero flex  flex-row items-centermt-[10vh]flex p-[3rem]  h-[75vh] flex-wrap ">
+      <div className="hero flex flex-row p-[3rem] h-[75vh] flex-wrap">
 
-        <div className="hero-text h-auto rounded-l-[14px]  backdrop-blur-[2px]  lg:shadow-none lg:rounded-none flex-1  p-[1rem] w-[40%] ">
-          <div className="text text-[1.5rem] mb-[1.5rem] mt-[2rem] font-medium text-center">
+        <div className="hero-text h-auto rounded-l-[14px] backdrop-blur-[3px]  lg:shadow-none lg:rounded-none flex-1  p-[1rem] md:w-[40%] w-[65%] ">
+          <div className="text text-[1.25rem] md:text-[1.5rem] mb-[1.5rem] mt-[2rem] font-medium text-center">
             &quot;Empowering dreams through education. Join us in bridging gaps for deserving students. Every contribution brings them closer to quality learning, brighter futures, and lasting impact. Be a part of ScholarLift and make education accessible for all.Join us on this journey to empower dreams, uplift potential, and make a difference in the lives of tomorrow’s leaders.&quot;
           </div>
           <div className="buttons mt-[1rem] text-center">
