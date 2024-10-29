@@ -97,7 +97,8 @@ export default function Login() {
 
                             <Button
                                 type="submit"
-                                className=" font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-white bg-redbg"
+                                className=" font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-white"
+                                sx={{backgroundColor:'#9C3353'}}
                             >
                                 Login
                             </Button>
