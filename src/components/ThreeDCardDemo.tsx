@@ -6,6 +6,7 @@ import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
 import { client } from "@/appwrite/config";
 import { Databases, Storage } from "appwrite";
 import Loading from "./Loading";
+import ProgressBar2 from "./Percentage";
 
 type FundraiserData = {
   $id: string; 
@@ -19,6 +20,7 @@ type FundraiserData = {
 export function ThreeDCard() {
   const [dataList, setDataList] = useState<FundraiserData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [collectedFund,setcollectedFund]=useState<number>(50);
   const databases = new Databases(client);
   const storage = new Storage(client);
   const defaultImageUrl = "/images/noimage.jpg";
@@ -44,8 +46,6 @@ export function ThreeDCard() {
               imageUrl = imageResponse;
               console.log(imageUrl);
             }
-
-            
 
             return {
               ...document,
@@ -101,6 +101,9 @@ export function ThreeDCard() {
                 className="h-32 sm:h-40 w-full object-cover rounded-lg group-hover/card:shadow-xl"
                 alt={data.title}
               />
+            </CardItem>
+            <CardItem as="p" translateZ="40" className="w-full pt-2 ">
+              <ProgressBar2 percent={collectedFund}/>
             </CardItem>
           </CardBody>
         </CardContainer>
