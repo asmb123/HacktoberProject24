@@ -175,7 +175,8 @@ const Start = () => {
         variant="contained"
         component="label"
         fullWidth
-        className="bg-lightredbg text-white mt-2"
+        className="mt-2"
+        sx={{ backgroundColor: '#9C3353', color: '#FFFFFF' }}
       >
         Upload Image
         <input
@@ -193,7 +194,8 @@ const Start = () => {
         variant="contained"
         color="primary"
         fullWidth
-        className="bg-lightredbg text-white mt-3"
+        className="mt-3"
+        sx={{ backgroundColor: '#9C3353', color: '#FFFFFF' }}
       >
         Submit Fundraiser
       </Button>
