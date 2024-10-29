@@ -45,7 +45,7 @@ const HeroSection = () => {
           <Image
             src="/images/heroImg.jpg"
             alt="Hero Section"
-            layout="fill"
+            fill
             objectFit="cover"
             className="hero-img w-[100%] h-[100%] "
             priority={true}
