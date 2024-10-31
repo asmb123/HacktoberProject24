@@ -42,15 +42,14 @@ const Start = () => {
           ID.unique(),
           formData.image
         );
-        imageId = response.$id; // Store the image ID
+        imageId = response.$id;
         console.log("File uploaded successfully:", response);
       } catch (error) {
         console.error("File upload failed:", error);
-        return; // Stop if image upload fails
+        return;
       }
     }
 
-    // Store document
     if (formData.title && formData.description && formData.goalAmount && formData.accountNo && formData.IFSC) {
       try {
         await databases.createDocument(
@@ -63,7 +62,7 @@ const Start = () => {
             goalAmount: parseFloat(formData.goalAmount),
             accountNo: formData.accountNo,
             IFSC: formData.IFSC,
-            imageId: imageId, // Link the image ID to the document
+            imageId: imageId,
           }
         );
         console.log("Document created successfully");
@@ -80,18 +79,16 @@ const Start = () => {
     const checkSession = async () => {
       setLoading(true);
       try {
-        await account.getSession('current'); // Check if a session exists
-        setLoading(false); // Stop loading if session exists
+        await account.getSession('current');
+        setLoading(false);
       } catch (error) {
-        // Redirect if no session exists or an error occurs
         router.push('/pages/login');
         console.log(error);
       }
     };
 
     checkSession();
-  }, [router]); // Adding router as a dependency is also good practice
-
+  }, [router]);
 
   if (loading) {
     return <Loading />;
@@ -101,10 +98,17 @@ const Start = () => {
     <Box
       component="form"
       onSubmit={handleSubmit}
-      sx={{ maxWidth: '40%', p: 4 }}
-      className="bg-white shadow-lg rounded-lg md:max-w-lg mx-auto"
+      sx={{
+        width: { xs: '90%', sm: '75%', md: '50%', lg: '40%' },
+        padding: 4,
+        bgcolor: 'white',
+        boxShadow: 3,
+        borderRadius: 2,
+        mx: 'auto',
+        mt: 5,
+      }}
     >
-      <Typography variant="h5" gutterBottom className="text-redbg">
+      <Typography variant="h5" gutterBottom sx={{ color: '#9C3353', textAlign: 'center' }}>
         Create Your Fundraiser
       </Typography>
 
@@ -117,7 +121,6 @@ const Start = () => {
         value={formData.title}
         onChange={handleChange}
         required
-        className="bg-lightredbg"
       />
 
       <TextField
@@ -131,7 +134,6 @@ const Start = () => {
         value={formData.description}
         onChange={handleChange}
         required
-        className="bg-lightredbg"
       />
 
       <TextField
@@ -144,10 +146,10 @@ const Start = () => {
         value={formData.goalAmount}
         onChange={handleChange}
         required
-        className="bg-lightredbg"
       />
+
       <TextField
-        label="Account number"
+        label="Account Number"
         name="accountNo"
         variant="filled"
         fullWidth
@@ -156,10 +158,10 @@ const Start = () => {
         value={formData.accountNo}
         onChange={handleChange}
         required
-        className="bg-lightredbg"
       />
+
       <TextField
-        label="IFSC number"
+        label="IFSC Code"
         name="IFSC"
         variant="filled"
         fullWidth
@@ -168,19 +170,16 @@ const Start = () => {
         value={formData.IFSC}
         onChange={handleChange}
         required
-        className="bg-lightredbg"
       />
 
       <Button
         variant="contained"
         component="label"
         fullWidth
-        className="mt-2"
-        sx={{ backgroundColor: '#9C3353', color: '#FFFFFF' }}
+        sx={{ mt: 2, backgroundColor: '#9C3353', color: '#FFFFFF' }}
       >
         Upload Image
         <input
-          id="uploader"
           type="file"
           name="image"
           accept="image/*"
@@ -192,10 +191,8 @@ const Start = () => {
       <Button
         type="submit"
         variant="contained"
-        color="primary"
         fullWidth
-        className="mt-3"
-        sx={{ backgroundColor: '#9C3353', color: '#FFFFFF' }}
+        sx={{ mt: 3, backgroundColor: '#9C3353', color: '#FFFFFF' }}
       >
         Submit Fundraiser
       </Button>
