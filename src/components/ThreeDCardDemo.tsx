@@ -7,7 +7,7 @@ import { client } from "@/appwrite/config";
 import { Databases, Storage } from "appwrite";
 import Loading from "./Loading";
 import ProgressBar2 from "./Percentage";
-import { Modal, Box, Typography, Button } from "@mui/material";
+import { Modal, Box, Typography, Button, TextField } from "@mui/material";
 import { motion } from "framer-motion";
 
 type FundraiserData = {
@@ -26,6 +26,8 @@ export function ThreeDCard() {
   const [collectedFund, setCollectedFund] = useState<number>(50);
   const [selectedData, setSelectedData] = useState<FundraiserData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [donateAmount, setDonateAmount] = useState<number | "">("");
+  const [showDonateInput, setShowDonateInput] = useState(false);
 
   const databases = new Databases(client);
   const storage = new Storage(client);
@@ -69,7 +71,6 @@ export function ThreeDCard() {
     };
 
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCardClick = (data: FundraiserData) => {
@@ -80,6 +81,16 @@ export function ThreeDCard() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedData(null);
+    setShowDonateInput(false);
+    setDonateAmount("");
+  };
+
+  const handleDonateClick = () => {
+    setShowDonateInput(true);
+  };
+
+  const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDonateAmount(Number(event.target.value));
   };
 
   if (loading) {
@@ -169,6 +180,19 @@ export function ThreeDCard() {
                 Goal Amount: {selectedData.goalAmount}
               </Typography>
               <ProgressBar2 percent={collectedFund} />
+              <Button onClick={handleDonateClick} sx={{ mt: 2 }}>
+                Donate
+              </Button>
+              {showDonateInput && (
+                <TextField
+                  label="Enter Amount"
+                  type="number"
+                  value={donateAmount}
+                  onChange={handleAmountChange}
+                  fullWidth
+                  sx={{ mt: 2 }}
+                />
+              )}
               <Button onClick={handleCloseModal} sx={{ mt: 2 }}>
                 Close
               </Button>
