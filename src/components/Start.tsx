@@ -67,7 +67,7 @@ const Start = () => {
           }
         );
         console.log("Document created successfully");
-        router.push('/pages/stories');
+        router.push('/pages/ourstories');
       } catch (error) {
         console.error("Failed to create document:", error);
       }
