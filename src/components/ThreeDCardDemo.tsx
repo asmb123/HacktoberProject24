@@ -9,7 +9,7 @@ import Loading from "./Loading";
 import ProgressBar2 from "./Percentage";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import { motion } from "framer-motion";
-
+import {loadStripe} from "@stripe/stripe-js";
 type FundraiserData = {
   $id: string;
   title: string;
@@ -18,7 +18,10 @@ type FundraiserData = {
   imageUrl: string | null;
   goalAmount: number;
 };
+const [receivedAmount, setReceivedAmount] = useState(0);
+const remainingPercentage = ((goalAmount - receivedAmount) / goalAmount) * 100;
 
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 export function ThreeDCard() {
   const [dataList, setDataList] = useState<FundraiserData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -80,6 +83,20 @@ export function ThreeDCard() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedData(null);
+  };
+  const handleDonate= async()=>{
+    const stripe= await stripePromise;
+    if(!stripe) return;
+    const response = await fetch("/api/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount: selectedData?.goalAmount }),
+    })
+    const { session } = await response.json();
+    stripe.redirectToCheckout({ sessionId: session.id });
+
   };
 
   if (loading) {
@@ -169,6 +186,9 @@ export function ThreeDCard() {
                 Goal Amount: {selectedData.goalAmount}
               </Typography>
               <ProgressBar2 percent={collectedFund} />
+              <Button onClick={handleDonate} sx={{ mt: 2 }} variant="contained" color="primary">
+               Donate
+              </Button>
               <Button onClick={handleCloseModal} sx={{ mt: 2 }}>
                 Close
               </Button>
