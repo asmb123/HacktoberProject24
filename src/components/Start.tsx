@@ -101,7 +101,7 @@ const Start = () => {
       sx={{
         width: { xs: '90%', sm: '75%', md: '50%', lg: '40%' },
         padding: 4,
-        bgcolor: 'white',
+        bgcolor: '#F18EAD',
         boxShadow: 3,
         borderRadius: 2,
         mx: 'auto',

@@ -12,17 +12,27 @@ const ContactUs = () => {
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }),
-            });
-            toast.success('Thank you, We will contact you soon');
-            const data = await response.json();
-            toast.success(data);
+            // const response = await fetch('/api/contact', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({ email, message }), // Send both email and message
+            // });
+
+            // // Check if the response is okay
+            // if (!response.ok) {
+            //     const errorData = await response.json();
+            //     toast.error(errorData.error || 'Failed to send message. Please try again later.');
+            //     setStatus('Failed to send message. Please try again later.');
+            //     return;
+            // }
+
+            // const data = await response.json();
+            toast.success('Thank you, we will contact you soon!');
             setStatus('Thank you for reaching out! We will contact you soon.');
+            setEmail(''); // Clear the email input
+            setMessage(''); // Clear the message input
         } catch (error) {
             setStatus('Failed to send message. Please try again later.');
             console.error('Failed to send message:', error);
@@ -48,7 +58,7 @@ const ContactUs = () => {
                     boxShadow: 3,
                     textAlign: "center",
                     bgcolor: "background.paper",
-                    backgroundColor: "#FBB6CC   ", // Light green background styling
+                    backgroundColor: "#FBB6CC", // Light green background styling
                 }}
             >
                 <Typography
